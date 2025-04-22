@@ -12,9 +12,16 @@ spec:
       labels:
         app: ghost
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: ghost
           image: ghost:5.115.1
+          ports:
+            - containerPort: 2368
           env:
             - name: database__client
               value: mysql
@@ -26,11 +33,26 @@ spec:
               value: ghostpassword
             - name: database__connection__database
               value: ghostdb
-          ports:
-            - containerPort: 2368
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1001
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
           volumeMounts:
             - name: ghost-storage
               mountPath: /var/lib/ghost/content
+              readOnly: false
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 2368
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      serviceAccountName: ghost-sa
+      automountServiceAccountToken: false
       volumes:
         - name: ghost-storage
           persistentVolumeClaim:
