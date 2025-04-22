@@ -13,9 +13,15 @@ spec:
       labels:
         app: mysql
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: mysql
-          image: "{{ .Values.mysql.image }}"
+          image: mysql:8.0.41
+          imagePullPolicy: Always
           ports:
             - containerPort: 3306
           env:
@@ -27,9 +33,37 @@ spec:
               value: "{{ .Values.mysql.user }}"
             - name: MYSQL_PASSWORD
               value: "{{ .Values.mysql.password }}"
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 999
+            readOnlyRootFilesystem: false  # true can break MySQL unless using initContainers for data
+            capabilities:
+              drop:
+                - ALL
           volumeMounts:
             - name: mysql-storage
               mountPath: /var/lib/mysql
+          livenessProbe:
+            exec:
+              command:
+                - mysqladmin
+                - ping
+                - -h
+                - 127.0.0.1
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+                - mysqladmin
+                - ping
+                - -h
+                - 127.0.0.1
+            initialDelaySeconds: 10
+            periodSeconds: 5
+      serviceAccountName: mysql-sa
+      automountServiceAccountToken: false
       volumes:
         - name: mysql-storage
           persistentVolumeClaim:
