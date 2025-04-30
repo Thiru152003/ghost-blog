@@ -1,6 +1,6 @@
 metadata:
   name: "Ensure securityContext is defined for all containers"
-  id: "MASA_K8S_014"
+  id: "MASA_K8S_015"
   category: "Kubernetes Security"
   severity: "HIGH"
 
