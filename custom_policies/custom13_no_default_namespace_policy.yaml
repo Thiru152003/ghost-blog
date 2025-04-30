@@ -1,6 +1,6 @@
 metadata:
   name: "Do not use or assume default namespace"
-  id: "CKV_CUSTOM_003"
+  id: "CKV_CUSTOM_001"
   category: "KUBERNETES"
   severity: "MEDIUM"
   description: "All Kubernetes resources must specify a non-default namespace. 'default' or missing is not allowed."
