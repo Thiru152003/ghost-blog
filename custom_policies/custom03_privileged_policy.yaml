@@ -1,0 +1,19 @@
+metadata:
+  name: "Ensure containers do not run as privileged"
+  id: "MASA_K8S_003"
+  category: "Kubernetes Security"
+  severity: "HIGH"
+
+scope:
+  provider: "kubernetes"
+
+definition:
+  cond_type: "attribute"
+  resource_types:
+    - "Deployment"
+    - "StatefulSet"
+    - "DaemonSet"
+    - "Job"
+  attribute: "spec.template.spec.containers[*].securityContext.privileged"
+  operator: "equals"
+  value: false
