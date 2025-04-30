@@ -1,6 +1,6 @@
 metadata:
   name: "Ensure container image tag is not 'latest'"
-  id: "MASA_K8S_005"
+  id: "MASA_K8S_010"
   category: "Kubernetes Best Practices"
   severity: "HIGH"
 
