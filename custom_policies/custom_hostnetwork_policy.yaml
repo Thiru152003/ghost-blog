@@ -1,0 +1,19 @@
+metadata:
+  name: "Ensure hostNetwork is not enabled"
+  id: "MASA_K8S_008"
+  category: "Kubernetes Security"
+  severity: "HIGH"
+
+scope:
+  provider: "kubernetes"
+
+definition:
+  cond_type: "attribute"
+  resource_types:
+    - "Pod"
+    - "Deployment"
+    - "StatefulSet"
+    - "DaemonSet"
+  attribute: "spec.template.spec.hostNetwork"
+  operator: "equals"
+  value: false
