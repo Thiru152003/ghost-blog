@@ -1,0 +1,28 @@
+metadata:
+  name: "Ensure containers define liveness and readiness probes"
+  id: "MASA_K8S_012"
+  category: "Kubernetes Best Practices"
+  severity: "HIGH"
+
+scope:
+  provider: "kubernetes"
+
+definition:
+  cond_type: "and"
+  conditions:
+    - cond_type: "attribute"
+      resource_types:
+        - "Deployment"
+        - "StatefulSet"
+        - "DaemonSet"
+        - "Job"
+      attribute: "spec.template.spec.containers[*].livenessProbe"
+      operator: "exists"
+    - cond_type: "attribute"
+      resource_types:
+        - "Deployment"
+        - "StatefulSet"
+        - "DaemonSet"
+        - "Job"
+      attribute: "spec.template.spec.containers[*].readinessProbe"
+      operator: "exists"
