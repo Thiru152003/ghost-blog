@@ -1,26 +1,20 @@
 metadata:
-  name: "Do not use or assume default namespace"
-  id: "CKV_CUSTOM_001"
-  category: "KUBERNETES"
+  name: "Ensure 'default' namespace is not used"
+  id: "MASA_K8S_013"
+  category: "Kubernetes Best Practices"
   severity: "MEDIUM"
-  description: "All Kubernetes resources must specify a non-default namespace. 'default' or missing is not allowed."
+
+scope:
+  provider: "kubernetes"
 
 definition:
-  and:
+  cond_type: "not"
+  conditions:
     - cond_type: "attribute"
-      resource_types:
-        - "Kubernetes::Generic"
       attribute: "metadata.namespace"
-      operator: "exists"
-    - cond_type: "attribute"
-      resource_types:
-        - "Kubernetes::Generic"
-      attribute: "metadata.namespace"
-      operator: "not_equals"
+      operator: "equals"
       value: "default"
     - cond_type: "attribute"
-      resource_types:
-        - "Kubernetes::Generic"
       attribute: "metadata.namespace"
-      operator: "not_contains"
-      value: "{{ .Values.namespace }}"
+      operator: "exists"
+      value: false
