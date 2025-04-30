@@ -1,20 +1,21 @@
 metadata:
-  name: "No default namespace usage"
+  name: "No default namespace usage in Helm"
   id: "CKV_CUSTOM_001"
   category: "KUBERNETES"
   severity: "MEDIUM"
-  description: "Kubernetes resources should not use the default namespace. Specify a custom namespace explicitly."
+  description: "Avoid using the 'default' namespace in Helm templates. Use a custom namespace explicitly."
 
 definition:
-  and:
-    - cond_type: "attribute"
-      resource_types:
-        - "Kubernetes::Generic"
-      attribute: "metadata.namespace"
-      operator: "exists"
+  or:
     - cond_type: "attribute"
       resource_types:
         - "Kubernetes::Generic"
       attribute: "metadata.namespace"
       operator: "not_equals"
       value: "default"
+    - cond_type: "attribute"
+      resource_types:
+        - "Kubernetes::Generic"
+      attribute: "metadata.namespace"
+      operator: "contains"
+      value: "{{ .Release.Namespace }}"
