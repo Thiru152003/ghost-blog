@@ -10,5 +10,5 @@ scope:
 definition:
   cond_type: "attribute"
   attribute: "metadata.namespace"
-  operator: "not_equals"
+  operator: "not_equals_if_exists"
   value: "default"
