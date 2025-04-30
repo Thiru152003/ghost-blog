@@ -8,13 +8,7 @@ scope:
   provider: "kubernetes"
 
 definition:
-  cond_type: "logical_or"
-  conditions:
-    - cond_type: "attribute"
-      attribute: "metadata.namespace"
-      operator: "equals"
-      value: "default"
-    - cond_type: "attribute"
-      attribute: "metadata.namespace"
-      operator: "exists"
-      value: false
+  cond_type: "attribute"
+  attribute: "metadata.namespace"
+  operator: "not_equals_if_exists"
+  value: "default"
