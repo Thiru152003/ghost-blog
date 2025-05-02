@@ -1,0 +1,12 @@
+metadata:
+  name: "S3 buckets must be encrypted"
+  id: "MASA_TF_003"
+  category: "Encryption"
+  severity: "MEDIUM"
+
+definition:
+  cond_type: "attribute"
+  resource_types:
+    - "aws_s3_bucket"
+  attribute: "server_side_encryption_configuration"
+  operator: "exists"
