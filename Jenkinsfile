@@ -46,7 +46,7 @@ pipeline {
                         -d rendered \
                         --framework kubernetes \
                         --external-checks-dir custom_policies \
-                        --all-external \
+                        --run-all-external-checks \
                         | tee -a checkov_output.txt
                 '''
             }
