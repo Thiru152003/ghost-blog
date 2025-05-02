@@ -26,12 +26,18 @@ pipeline {
                     mkdir -p rendered
 
                     echo "🔧 Rendering Helm charts into split files..."
-                    find ./helm-charts -name "Chart.yaml" | while read chart_file; do
-                        chart_dir=$(dirname "$chart_file")
-                        chart_name=$(basename "$chart_dir" | tr '[:upper:]' '[:lower:]' | tr -cd 'a-z0-9-')
-                        mkdir -p rendered/${chart_name}
-                        helm template ${chart_name} ${chart_dir} --output-dir rendered/${chart_name}
-                    done
+                    # Check if the ghost-blog directory exists before proceeding
+                    if [ -d "./ghost-blog" ]; then
+                        find ./ghost-blog -name "Chart.yaml" | while read chart_file; do
+                            chart_dir=$(dirname "$chart_file")
+                            chart_name=$(basename "$chart_dir" | tr '[:upper:]' '[:lower:]' | tr -cd 'a-z0-9-')
+                            mkdir -p rendered/${chart_name}
+                            helm template ${chart_name} ${chart_dir} --output-dir rendered/${chart_name}
+                        done
+                    else
+                        echo "Error: './ghost-blog' directory does not exist."
+                        exit 1
+                    fi
                 '''
             }
         }
