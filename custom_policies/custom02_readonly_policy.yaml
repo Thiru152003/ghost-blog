@@ -1,5 +1,0 @@
-metadata:
-  id: "MASA_K8S_001"
-  name: "Ensure Pod Security Policies are defined"
-  category: "Pod Security"
-  definition: "Ensure that Pod Security Policies are applied to all Kubernetes pods."
