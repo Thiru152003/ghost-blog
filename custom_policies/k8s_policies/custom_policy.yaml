@@ -1,5 +1,5 @@
 metadata:
-  id: "CUSTOM_K8S_1"
+  id: "MASA_K8S_1"
   name: "Ensure all Kubernetes pods have resource limits"
   category: "Kubernetes Security Best Practices"
   severity: "HIGH"
