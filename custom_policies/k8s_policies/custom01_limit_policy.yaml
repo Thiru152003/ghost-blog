@@ -1,6 +1,6 @@
 metadata:
   name: "Ensure resource limits are set"
-  id: "MASA_K8S_001"
+  id: "CUSTOM_K8S_09991"
   category: "Kubernetes Security"
   severity: "HIGH"
 
