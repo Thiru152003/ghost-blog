@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "id": "CUSTOM_IAM_POLICY_NO_WILDCARD",
+    "name": "Ensure IAM Policies Are Not Overly Permissive",
+    "category": "iam",
+    "severity": "CRITICAL"
+  },
+  "definition": {
+    "cond_type": "attribute",
+    "resource_types": ["aws_iam_policy"],
+    "attribute": "policy.Statement[*].Action",
+    "operator": "not_contains",
+    "value": "*"
+  }
+}
+

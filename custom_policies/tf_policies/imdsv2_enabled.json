@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "id": "CUSTOM_EC2_IMDSV2",
+    "name": "Ensure EC2 Instances Have IMDSv2 Enabled",
+    "category": "security",
+    "severity": "MEDIUM"
+  },
+  "definition": {
+    "cond_type": "attribute",
+    "resource_types": ["aws_instance"],
+    "attribute": "metadata_options.http_tokens",
+    "operator": "equals",
+    "value": "required"
+  }
+}
+

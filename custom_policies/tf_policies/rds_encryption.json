@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "id": "CUSTOM_RDS_ENCRYPTION",
+    "name": "Ensure RDS Instances Have Encryption Enabled",
+    "category": "database",
+    "severity": "HIGH"
+  },
+  "definition": {
+    "cond_type": "attribute",
+    "resource_types": ["aws_db_instance"],
+    "attribute": "storage_encrypted",
+    "operator": "equals",
+    "value": true
+  }
+}
+

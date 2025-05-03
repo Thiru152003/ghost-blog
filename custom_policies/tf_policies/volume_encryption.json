@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "id": "CUSTOM_EBS_VOLUME_ENCRYPTION",
+    "name": "Ensure EBS Volumes Are Encrypted",
+    "category": "encryption",
+    "severity": "HIGH"
+  },
+  "definition": {
+    "cond_type": "attribute",
+    "resource_types": ["aws_ebs_volume"],
+    "attribute": "encrypted",
+    "operator": "equals",
+    "value": true
+  }
+}
+

@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "id": "CUSTOM_KMS_KEY_NOT_PUBLIC",
+    "name": "Ensure KMS Keys Are Not Publicly Accessible",
+    "category": "encryption",
+    "severity": "CRITICAL"
+  },
+  "definition": {
+    "cond_type": "attribute",
+    "resource_types": ["aws_kms_key"],
+    "attribute": "key_policy.Statement[*].Principal.AWS",
+    "operator": "not_contains",
+    "value": "*"
+  }
+}
+

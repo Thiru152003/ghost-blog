@@ -1,0 +1,13 @@
+metadata:
+  id: "CUSTOM_K8S_1"
+  name: "Ensure all Kubernetes pods have resource limits"
+  category: "Kubernetes Security Best Practices"
+  severity: "HIGH"
+scope:
+  provider: "kubernetes"
+definition:
+  cond_type: "attribute"
+  resource_types: "Pod"
+  attribute: "spec.containers[*].resources.limits"
+  operator: "exists"
+

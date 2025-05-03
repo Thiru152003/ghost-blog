@@ -1,0 +1,14 @@
+metadata:
+  id: "CUSTOM_K8S_2"
+  name: "Ensure all Kubernetes containers run as non-root"
+  category: "Kubernetes Security Best Practices"
+  severity: "HIGH"
+scope:
+  provider: "kubernetes"
+definition:
+  cond_type: "attribute"
+  resource_types: "Pod"
+  attribute: "spec.containers[*].securityContext.runAsNonRoot"
+  operator: "exists"
+  value: true
+

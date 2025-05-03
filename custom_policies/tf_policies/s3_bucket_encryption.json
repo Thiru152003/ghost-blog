@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "id": "CUSTOM_S3_BUCKET_ENCRYPTION",
+    "name": "Ensure S3 Buckets Are Encrypted",
+    "category": "encryption",
+    "severity": "HIGH"
+  },
+  "definition": {
+    "cond_type": "attribute",
+    "resource_types": ["aws_s3_bucket"],
+    "attribute": "server_side_encryption_configuration.rule.apply_server_side_encryption_by_default.sse_algorithm",
+    "operator": "exists"
+  }
+}
+

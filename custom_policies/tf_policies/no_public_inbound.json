@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "id": "CUSTOM_SG_NO_PUBLIC_INBOUND",
+    "name": "Ensure Security Groups Do Not Allow Public Inbound Access",
+    "category": "networking",
+    "severity": "HIGH"
+  },
+  "definition": {
+    "cond_type": "attribute",
+    "resource_types": ["aws_security_group"],
+    "attribute": "ingress[*].cidr_blocks",
+    "operator": "not_contains",
+    "value": "0.0.0.0/0"
+  }
+}
+

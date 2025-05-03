@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "id": "CUSTOM_EC2_NO_DEFAULT_SG",
+    "name": "Ensure EC2 Instances Do Not Use Default Security Group",
+    "category": "networking",
+    "severity": "HIGH"
+  },
+  "definition": {
+    "cond_type": "attribute",
+    "resource_types": ["aws_instance"],
+    "attribute": "vpc_security_group_ids",
+    "operator": "not_contains",
+    "value": "default"
+  }
+}
+

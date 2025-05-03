@@ -1,0 +1,18 @@
+metadata:
+  id: "CUSTOM_K8S_5"
+  name: "Ensure all Kubernetes containers have liveness and readiness probes"
+  category: "Kubernetes Availability Best Practices"
+  severity: "MEDIUM"
+scope:
+  provider: "kubernetes"
+definition:
+  or:
+    - cond_type: "attribute"
+      resource_types: "Pod"
+      attribute: "spec.containers[*].livenessProbe"
+      operator: "exists"
+    - cond_type: "attribute"
+      resource_types: "Pod"
+      attribute: "spec.containers[*].readinessProbe"
+      operator: "exists"
+

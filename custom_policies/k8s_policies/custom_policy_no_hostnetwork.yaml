@@ -1,0 +1,13 @@
+metadata:
+  id: "CUSTOM_K8S_10"
+  name: "Ensure Kubernetes pods do not use host networking"
+  category: "Kubernetes Security Best Practices"
+  severity: "MEDIUM"
+scope:
+  provider: "kubernetes"
+definition:
+  cond_type: "attribute"
+  resource_types: "Pod"
+  attribute: "spec.hostNetwork"
+  operator: "not_exists"
+

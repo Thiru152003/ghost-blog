@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "id": "CUSTOM_VPC_FLOW_LOGS",
+    "name": "Ensure VPC Flow Logs Are Enabled",
+    "category": "networking",
+    "severity": "HIGH"
+  },
+  "definition": {
+    "cond_type": "attribute",
+    "resource_types": ["aws_flow_log"],
+    "attribute": "log_destination",
+    "operator": "exists"
+  }
+}
+
